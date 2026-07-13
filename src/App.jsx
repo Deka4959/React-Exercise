@@ -1,9 +1,8 @@
-import UserCard from "./UserCard";
+import Blogg from "./Blogg";
 
 function App() {
   return (
-    <UserCard />
-    
+    <Blogg />
   );
 }
 
