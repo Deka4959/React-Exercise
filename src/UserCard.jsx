@@ -1,14 +1,20 @@
+const UserCard=(props)=>{
 
 
-const UserCard =()=>{
+    
+
     return(
-<>
-    <h2>Deka Abdulkadir</h2>
-    <p>Dekaabd@gmail.c0m</p>
-    </>
-    )
+         
+        <h1>name: {props.name}</h1>
+        
+        
+       
+        
+        
+
+    );
+
 
 
 }
-
-export default UserCard;
+export default UserCard

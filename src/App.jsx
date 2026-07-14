@@ -1,8 +1,23 @@
-import Blogg from "./Blogg";
+
+import  UserCard from './UserCard'
 
 function App() {
+
+ 
+  
+
+
   return (
-    <Blogg />
+<>       
+    <UserCard  name  = "Deka"/>
+     <UserCard  name = "dekaabdi444@gmail.com"/>
+     <UserCard  name = "26"/>
+
+
+    
+</>
+
+
   );
 }
 
