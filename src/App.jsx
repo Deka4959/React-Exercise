@@ -1,23 +1,32 @@
 
-import  UserCard from './UserCard'
+import { useState } from "react";
+
 
 function App() {
 
- 
+
+  const [isOn , setIsOn] = useState(false)
+const ToggoleChange=()=>{
+setIsOn(!isOn)
+
+};
+
   
 
-
   return (
-<>       
-    <UserCard  name  = "Deka"/>
-     <UserCard  name = "dekaabdi444@gmail.com"/>
-     <UserCard  name = "26"/>
+
+    <>
+<button onClick={ToggoleChange}>ON/OFF</button>
+
+<h2>{isOn ? "ON 🟢" : " OFF 🔴"}</h2>
+    
 
 
     
-</>
-
-
+   
+    
+    </>
+    
   );
 }
 
