@@ -1,37 +1,36 @@
-import { useEffect , useState } from "react";
-
- 
+import { useEffect, useState } from "react";
 
 function App() {
-const [name , setName]= useState("");
-const [salaan , setSalaan]= useState("assalama aleiukum");
-useEffect(()=>{
+  const [mouseMove, setMouseMove] = useState({
+    x: 0,
+    y: 0,
+  });
 
-  document.title= `${name} : ${salaan}`;
+  useEffect(() => {
 
-  console.log(`${name}, ${salaan}`)
+    
+    const handleMouse = (event) => {
+      setMouseMove({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
 
+    window.addEventListener("mousemove", handleMouse);
+    return () => {
+      window.removeEventListener("mousemove", handleMouse);
+    };
 
-}, [name , salaan]);
+  }, []);
 
-  
+  return (
+    <>
+      <h2>Mouse Effect</h2>
 
-
-
-
-  return(
-    <>   
-    <h2>Enter your Name</h2>
-    <input type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
-    <h2>Greating</h2>
-     <input type="text" value={salaan} onChange={(e)=> setSalaan(e.target.value)}/>
-  
-
-
-</>
-
-  ) ;
-  
+      <p>X :: Position: {mouseMove.x}</p>
+      <p>Y ::  Position: {mouseMove.y}</p>
+    </>
+  );
 }
 
 export default App;
