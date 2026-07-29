@@ -1,34 +1,53 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [mouseMove, setMouseMove] = useState({
-    x: 0,
-    y: 0,
-  });
+  const [time, SetTime] = useState(30);
+  const [running, setIsRunning] = useState(false);
 
   useEffect(() => {
+    let timerId;
 
-    
-    const handleMouse = (event) => {
-      setMouseMove({
-        x: event.clientX,
-        y: event.clientY,
-      });
-    };
+    if (running && time > 0) {
+      timerId = setInterval(() => {
+        SetTime((prev) => prev - 1);
+      }, 1000);
+    }
 
-    window.addEventListener("mousemove", handleMouse);
-    return () => {
-      window.removeEventListener("mousemove", handleMouse);
-    };
+    return () => clearInterval(timerId);
+  }, [running, time]);
 
-  }, []);
+  const startEvent = () => setIsRunning(true);
+
+  const stopEvent = () => setIsRunning(false);
+
+  const resetEvent = () => {
+    setIsRunning(false);
+    SetTime(30);
+  };
 
   return (
     <>
-      <h2>Mouse Effect</h2>
+      <h2>Count Down</h2>
 
-      <p>X :: Position: {mouseMove.x}</p>
-      <p>Y ::  Position: {mouseMove.y}</p>
+      <p>Set Time Out</p>
+
+      <input
+        type="number"
+        value={time}
+        onChange={(e) => SetTime(Number(e.target.value))}
+      />
+
+      <p>Time Left: {time}</p>
+
+      <button onClick={startEvent} disabled={running}>
+        Start
+      </button>
+
+      <button onClick={stopEvent} disabled={!running}>
+        Stop
+      </button>
+
+      <button onClick={resetEvent}>Reset</button>
     </>
   );
 }
