@@ -1,39 +1,51 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
-  const [time ,setTime] =useState("");
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
-  useEffect(()=>{
-    const timeId =setInterval(()=>{
- const todayTime = new Date().toLocaleTimeString()
-setTime(todayTime)
-    },1000)
-   
-   
+  const getData = async () => {
+    try {
+      setLoading(true);
 
-    
+      const response = await fetch(
+        `https://api.github.com/users/${search}`
+      );
 
-
-
-
-    return()=> clearInterval(timeId)
-
-  },[])
-  
-
-
-   
-  return (
-    <>
-    <h1>Digital Clock ⭐⭐</h1>
-    <p>Current Time</p>
-    <p>Today Time is {time}</p>
-
-
-    
+      const data = await response.json();
       
 
-     
+      setUser(data);
+    } 
+    catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <h1>Github User Search</h1>
+
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <button onClick={getData}>Search</button>
+
+      {loading && <p>Loading...</p>}
+
+      <p>{user.login}</p>
+      <p>{user.followers}</p>
+        <p>{user.public_repos}</p>
+        <p>{user.bio}</p>
+        <p>{user.avatar_url}</p>
+      
     </>
   );
 }
