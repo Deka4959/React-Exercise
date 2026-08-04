@@ -1,17 +1,10 @@
-import UserList from "./UserList";
+import LogedInForm from "./LogIn";
 
 function App() {
- 
-   
   return (
-
-  <UserList />
-  
-
-
-  
-  
-
+    <>
+      <LogedInForm />
+    </>
   );
 }
 
