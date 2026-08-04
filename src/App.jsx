@@ -1,9 +1,9 @@
-import LogedInForm from "./LogIn";
+import Counter from "./Counter";
 
 function App() {
   return (
     <>
-      <LogedInForm />
+      <Counter />
     </>
   );
 }
