@@ -1,40 +1,26 @@
-import { useState } from "react";
-import { CartContext } from "./CartContext";
-import ProductCartSummry from "./ProductCartSummry";
+import UseForm from "./UseForm";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  const addProduct = (name, price) => {
-    setCart([
-      ...cart,
-      {
-        name: name,
-        price: price,
-      },
-    ]);
-  };
+  const { form, handleChange, handleSubmit } = UseForm();
 
   return (
-    <CartContext.Provider value={{ cart, addProduct }}>
-      <h1>Product Cart</h1>
+    <form onSubmit={handleSubmit}>
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+      />
 
-      <h2>Widget</h2>
-      <p>Price: $19.99</p>
+      <label>Email</label>
+      <input
+        type="email" name="email" value={form.email} onChange={handleChange}
+      />
 
-      <button onClick={() => addProduct("Widget", 19.99)}>
-        Add Widget
-      </button>
+      <button type="submit">Submit</button>
 
-      <h2>Gadget</h2>
-      <p>Price: $29.99</p>
-
-      <button onClick={() => addProduct("Gadget", 29.99)}>
-        Add Gadget
-      </button>
-
-      <ProductCartSummry/>
-    </CartContext.Provider>
+    </form>
   );
 }
 
