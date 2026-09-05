@@ -1,26 +1,19 @@
-import UseForm from "./UseForm";
+import ContactProvider from "./Contactcontext";
+import AddContact from "./AddContact";
+import EditContact from "./EditContact";
+import DeleteContact from "./DeleteContact";
+import ToggleFavorite from "./ToggleFavorite";
 
 function App() {
-  const { form, handleChange, handleSubmit } = UseForm();
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Name</label>
-      <input
-        type="text"
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-      />
+    <ContactProvider>
+      <h1>Contact App</h1>
 
-      <label>Email</label>
-      <input
-        type="email" name="email" value={form.email} onChange={handleChange}
-      />
-
-      <button type="submit">Submit</button>
-
-    </form>
+      <AddContact />
+      <EditContact />
+      <DeleteContact />
+      <ToggleFavorite />
+    </ContactProvider>
   );
 }
 
