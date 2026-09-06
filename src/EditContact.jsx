@@ -6,6 +6,8 @@ const initialState = {
   contacts: [],
 };
 
+
+
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_CONTACT":
@@ -56,6 +58,8 @@ function reducer(state, action) {
       return state;
   }
 }
+
+
 
 function ContactProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);

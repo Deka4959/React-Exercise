@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { ContactContext } from "./Contactcontext";
 
+import styles from "./AddContact.module.css";
+
 function DeleteContact({ contact }) {
   const { dispatch } = useContext(ContactContext);
 
@@ -17,7 +19,7 @@ function DeleteContact({ contact }) {
   
 
   return (
-    <button onClick={handleDelete}>
+    <button onClick={handleDelete} className={styles.button}> 
       Delete
     </button>
   );

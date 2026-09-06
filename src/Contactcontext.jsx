@@ -1,3 +1,4 @@
+
 import React, { createContext, useReducer } from "react";
 
 export const ContactContext = createContext();
@@ -5,6 +6,11 @@ export const ContactContext = createContext();
 const initialState = {
   contacts: [],
 };
+
+
+
+
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -19,6 +25,10 @@ function reducer(state, action) {
           },
         ],
       };
+
+
+
+
 
     case "EDIT_CONTACT":
       return {

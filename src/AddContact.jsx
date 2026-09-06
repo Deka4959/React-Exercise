@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ContactContext } from "./Contactcontext";
+import styles from "./AddContact.module.css";
+
 
 function AddContact() {
   const [form, setForm] = useState({
@@ -7,6 +9,11 @@ function AddContact() {
     email: "",
     number: "",
   });
+
+
+
+
+  
 
   const { dispatch } = useContext(ContactContext);
 
@@ -36,31 +43,28 @@ function AddContact() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={form.name}
-        onChange={handleChange}
-      />
-
-      <input
+     <input
+  type="text"
+  name="name"
+  placeholder="Name"
+  value={form.name}
+  onChange={handleChange} className={styles.input}
+  
+/> <input
         type="email"
         name="email"
         placeholder="Email"
         value={form.email}
-        onChange={handleChange}
-      />
-
-      <input
+        onChange={handleChange} className={styles.input}
+      />   <input
         type="text"
         name="number"
         placeholder="Phone number"
         value={form.number}
-        onChange={handleChange}
+        onChange={handleChange} className={styles.input}
       />
 
-      <button type="submit">Add Contact</button>
+      <button type="submit"  className={styles.button}>Add Contact</button>
     </form>
   );
 }

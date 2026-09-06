@@ -1,18 +1,21 @@
+import React from "react";
+
+import styles from "./App.module.css";
+
 import ContactProvider from "./Contactcontext";
 import AddContact from "./AddContact";
 import EditContact from "./EditContact";
 import DeleteContact from "./DeleteContact";
-import ToggleFavorite from "./ToggleFavorite";
 
 function App() {
   return (
     <ContactProvider>
-      <h1>Contact App</h1>
+      <h1 className={styles.ContactApp}>ContactApp</h1>
 
-      <AddContact />
-      <EditContact />
+      <AddContact  />
       <DeleteContact />
-      <ToggleFavorite />
+
+      <EditContact />
     </ContactProvider>
   );
 }
