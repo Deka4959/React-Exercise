@@ -1,7 +1,6 @@
+
 import React, { useState, useContext } from "react";
 import { ContactContext } from "./Contactcontext";
-import styles from "./AddContact.module.css";
-
 
 function AddContact() {
   const [form, setForm] = useState({
@@ -9,11 +8,6 @@ function AddContact() {
     email: "",
     number: "",
   });
-
-
-
-
-  
 
   const { dispatch } = useContext(ContactContext);
 
@@ -42,31 +36,48 @@ function AddContact() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-     <input
-  type="text"
-  name="name"
-  placeholder="Name"
-  value={form.name}
-  onChange={handleChange} className={styles.input}
-  
-/> <input
+    <form
+      onSubmit={handleSubmit}
+      className="w-96 mx-auto mt-10 p-6 bg-blue-100 rounded-xl shadow-lg"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value={form.name}
+        onChange={handleChange}
+        className="bg-amber-500 p-2 m-2 rounded"
+      />
+
+      <input
         type="email"
         name="email"
         placeholder="Email"
         value={form.email}
-        onChange={handleChange} className={styles.input}
-      />   <input
+        onChange={handleChange}
+        className="bg-amber-500 p-2 m-2 rounded"
+      />
+
+      <input
         type="text"
         name="number"
         placeholder="Phone number"
         value={form.number}
-        onChange={handleChange} className={styles.input}
+        onChange={handleChange}
+        className="bg-amber-500 p-2 m-2 rounded"
       />
 
-      <button type="submit"  className={styles.button}>Add Contact</button>
+      <button
+        type="submit"
+        className="bg-blue-400 text-white p-2 m-2 rounded"
+      >
+        Add Contact
+      </button>
     </form>
   );
 }
 
 export default AddContact;
+
+
+

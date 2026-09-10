@@ -19,7 +19,7 @@ function DeleteContact({ contact }) {
   
 
   return (
-    <button onClick={handleDelete} className={styles.button}> 
+    <button onClick={handleDelete} className="bg-blue-400 text-white p-2 m-2 rounded"> 
       Delete
     </button>
   );

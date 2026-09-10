@@ -1,21 +1,16 @@
-import React from "react";
-
-import styles from "./App.module.css";
-
-import ContactProvider from "./Contactcontext";
+import Header from "./AddContactTailwind";
 import AddContact from "./AddContact";
 import EditContact from "./EditContact";
-import DeleteContact from "./DeleteContact";
+import  DeleteContact from "./DeleteContact";
+import ContactProvider from "./Contactcontext";
 
 function App() {
   return (
     <ContactProvider>
-      <h1 className={styles.ContactApp}>ContactApp</h1>
-
-      <AddContact  />
-      <DeleteContact />
-
+      <Header />
+      <AddContact />
       <EditContact />
+       <DeleteContact />
     </ContactProvider>
   );
 }
