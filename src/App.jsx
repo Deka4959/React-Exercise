@@ -1,18 +1,7 @@
-import Header from "./AddContactTailwind";
-import AddContact from "./AddContact";
-import EditContact from "./EditContact";
-import  DeleteContact from "./DeleteContact";
-import ContactProvider from "./Contactcontext";
+import DesignTailwind from "./DesignTailwind";
 
 function App() {
-  return (
-    <ContactProvider>
-      <Header />
-      <AddContact />
-      <EditContact />
-       <DeleteContact />
-    </ContactProvider>
-  );
+  return <DesignTailwind />;
 }
 
 export default App;
