@@ -1,0 +1,84 @@
+import { useState } from "react";
+
+function App() {
+  const [formData, setFormData] = useState({
+    userName: "",
+    Email: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.userName.trim()) {
+      errors.userName = "User name is required";
+    }
+
+    if (!formData.Email.trim()) {
+      errors.Email = "Email is required";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const validationErrors = validateForm();
+
+    console.log(Object.keys(validationErrors));
+
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("success");
+    } else {
+      setErrors(validationErrors);
+    }
+  };
+
+  const hanleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="userName"
+        value={formData.userName}
+        onChange={hanleChange}
+        placeholder="enter your username"
+      />
+
+      {errors.userName && (
+        <p className="error">{errors.userName}</p>
+      )}
+
+      <input
+        type="text"
+        name="Email"
+        value={formData.Email}
+        onChange={hanleChange}
+        placeholder="enter your email"
+      />
+
+      {errors.Email && (
+        <p className="error">{errors.Email}</p>
+      )}
+
+      <button
+        type="submit"
+        className="rounded-2xl bg-amber-200 p-6"
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+
+export default App;
