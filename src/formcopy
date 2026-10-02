@@ -1,83 +1,119 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 function App() {
-  const [formData, setFormData] = useState({
-    userName: "",
-    Email: "",
-  });
+  const { register, handleSubmit, watch, formState: { errors },
+  } = useForm();
 
-  const [errors, setErrors] = useState({});
+  console.log(errors.username);
 
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.userName.trim()) {
-      errors.userName = "User name is required";
-    }
-
-    if (!formData.Email.trim()) {
-      errors.Email = "Email is required";
-    }
-
-    return errors;
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const validationErrors = validateForm();
-
-    console.log(Object.keys(validationErrors));
-
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("success");
-    } else {
-      setErrors(validationErrors);
-    }
-  };
-
-  const hanleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const password = watch("password");
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="userName"
-        value={formData.userName}
-        onChange={hanleChange}
-        placeholder="enter your username"
-      />
+    <>
+      <h1>Student Registration</h1>
 
-      {errors.userName && (
-        <p className="error">{errors.userName}</p>
-      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label>Username</label>
 
-      <input
-        type="text"
-        name="Email"
-        value={formData.Email}
-        onChange={hanleChange}
-        placeholder="enter your email"
-      />
+          <input
+            type="text"
+            {...register("username", {
+              required: "username is required",
+            })}
+            className="border-2 p-4"
+          />
 
-      {errors.Email && (
-        <p className="error">{errors.Email}</p>
-      )}
+          {errors.username && (
+            <p className="text-red-500">{errors.username.message}</p>
+          )}
+        </div>
 
-      <button
-        type="submit"
-        className="rounded-2xl bg-amber-200 p-6"
-      >
-        Submit
-      </button>
-    </form>
+        <div>
+          <label>Email</label>
+
+          <input
+            type="email"
+            {...register("email", {
+              required: "email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "invalid email address",
+              },
+            })}
+            className="border-2 p-4"
+          />
+
+          {errors.email && (
+            <p className="text-red-500">{errors.email.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>Password</label>
+
+          <input
+            type="password"
+            {...register("password", {
+              required: "password is required",
+              minLength: {
+                value: 6,
+                message: "password must be at least 6 characters",
+              },
+            })}
+            className="border-2 p-4"
+          />
+
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label>Confirm Password</label>
+
+          <input
+            type="password"
+            {...register("confirmpassword", {
+              required: "confirm password is required",
+              validate: (value) =>
+                value === password || "passwords do not match",
+            })}
+            className="border-2 p-4"
+          />
+
+          {errors.confirmpassword && (
+            <p className="text-red-500">
+              {errors.confirmpassword.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            {...register("terms", {
+              required: "you must accept terms",
+            })}
+          />
+
+          {errors.terms && (
+            <p className="text-red-500">{errors.terms.message}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="border-2 bg-amber-600 p-4"
+        >
+          Submit
+        </button>
+      </form>
+    </>
   );
 }
 
