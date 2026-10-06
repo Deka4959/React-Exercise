@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router";
 import "./index.css";
 
-import { RouterProvider } from "react-router";
-import router from "./ReceipePage.jsx";
+import router from "./Routes";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
