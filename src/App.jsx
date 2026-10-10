@@ -1,16 +1,29 @@
-import { Link, Outlet } from "react-router";
+import { useContext, useState, createContext } from "react";
 
-function App() {
+const UserContex = createContext();
+
+function UserName() {
+  const { language, setLanguage } = useContext(UserContex);
+
   return (
     <>
-    <h1 className="text-2xl font-bold">React blogg</h1>
-     <nav className="flex items-center justify-center gap-8 bg-rose-300 p-4 text-2xl">
-        <Link to="/">Home</Link>
-        <Link to="/post">Post</Link>
-      </nav>
+      <h1>
+        {language === "Spanish" ? "Hola" : "Hello"}</h1>
 
-      <Outlet />
+      <button onClick={() => setLanguage(language === "Spanish" ? "English" : "Spanish")} className="bg-amber-200 rounded-2xl p-4">
+        Switch language
+      </button>
     </>
+  );
+}
+
+function App() {
+  const [language, setLanguage] = useState("English");
+
+  return (
+    <UserContex.Provider value={{ language, setLanguage }}>
+      <UserName />
+    </UserContex.Provider>
   );
 }
 
